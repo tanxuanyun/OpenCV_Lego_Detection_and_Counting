@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Lego Detection and Counting</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- <body onload="py_video()"></body> -->
+
+<body>
+    <!-- HTML STARTS HERE -->
+
+    <!-- Type your codes here -->
+    <div class="container-sm|md|lg|xl p-4 m-3 bg-dark">
+        <h2 class="text-white">Lego Detection and Counting</h2>
+    </div>
+
+    <div class="container-sm|md|lg|xl px-3 mx-3">
+        <div class="row my-3">
+            <div class="col-md-6">
+                <div class="row">
+                    <h5 id="p1"> Select the level of difficulty before pressing Start Video </h5>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <p class="mt-0" id="p2">Please select level of difficulty: </p>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="idOption">
+                            <option value=""> </option>
+                            <option value="Level 1">Level 1</option>
+                            <option value="Level 2">Level 2</option>
+                            <option value="Level 3">Level 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <img id="output" src="image/empty.png">
+                </div>
+                <div class="row mt-3">
+                    <button onclick="eel.video_feed()" id="btn1" type="button" class="btn mr-3 btn-primary">Start Video</button>
+                    <button onclick="eel.stop_video_feed()" id="btn2" type="button" class="btn mr-3 btn-warning">Stop</button>
+                    <button onclick="eel.restart_video_feed()" id="btn3" type="button" class="btn mr-3 btn-info">Restart</button>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h5 id="control">Control</h5>
+                    </div>
+                    
+                </div>
+                <div class="row">
+
+                    <table class="table1">
+                    <tr>
+                        <td>Lego Detection</td>
+                        <td><label class="switch">
+                            <input type="checkbox" id="contour" onclick="contour()">
+                            <span class="slider"></span>
+                          </label></td>
+                    </tr>
+                    <tr>
+                        <td>Circle detection</td>
+                        <td><label class="switch">
+                            <input type="checkbox" id="circle" onclick="circle()">
+                            <span class="slider"></span>
+                          </label></td>
+                    </tr>
+                    <tr>
+                        <td>Identify Lego</td>
+                        <td><label class="switch">
+                            <input type="checkbox" id="label" onclick="label()">
+                            <span class="slider"></span>
+                          </label></td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                
+                <h5 id="numlego">Number of Lego</h5>
+
+                <table class="table2">
+                    <tr>
+                        <th class="table-dark" id="lego">Lego Type</th>
+                        <th class="table-dark">Image</th>
+                        <th class="table-dark" id="count">Count</th>
+                    </tr>
+                    <tr>
+                        <td>Yellow Duplo Brick 2x2 <span class="badge badge-secondary" id="yellow2x2badge"></span></td>
+                        <td class="img"><img src="./image/yellow2x2.png"></img></td>
+                        <td id="yellow2x2">0</td>
+                    </tr>
+                    <tr>
+                        <td>Yellow Duplo Brick 2x3 <span class="badge badge-secondary" id="yellow2x3badge"></span></td>
+                        <td class="img"><img src="./image/yellow2x3.png"></img></td>
+                        <td id="yellow2x3">0</td>
+                    </tr>
+                    <tr>
+                        <td>Yellow Duplo Brick 2x4 <span class="badge badge-secondary" id="yellow2x4badge"></span></td>
+                        <td class="img"><img src="./image/yellow2x4.png"></img></td>
+                        <td id="yellow2x4">0</td>
+                    </tr>
+                    <tr>
+                        <td>Lime Duplo Brick 2x2 <span class="badge badge-secondary" id="lime2x2badge"></span></td>
+                        <td class="img"><img src="./image/lime2x2.png"></img></td>
+                        <td id="lime2x2">0</td>
+                    </tr>
+                    <tr>
+                        <td>Lime Duplo Brick 2x4 <span class="badge badge-secondary" id="lime2x4badge"></span></td>
+                        <td class="img"><img src="./image/lime2x4.png"></img></td>
+                        <td id="lime2x4">0</td>
+                    </tr>
+                    <tr>
+                        <td>Orange Duplo Brick 2x2 <span class="badge badge-secondary" id="orange2x2badge"></span></td>
+                        <td class="img"><img src="./image/orange2x2.png"></img></td>
+                        <td id="orange2x2">0</td>
+                    </tr>
+                    <tr>
+                        <td>Orange Duplo Brick 2x4 <span class="badge badge-secondary" id="orange2x4badge"></span></td>
+                        <td class="img"><img src="./image/orange2x4.png"></img></td>
+                        <td id="orange2x4">0</td>
+                    </tr>
+                    <tr>
+                        <td>Light Gray Duplo Brick 2x4 <span class="badge badge-secondary" id="lightgray2x4badge"></span></td>
+                        <td class="img"><img src="./image/lightgray2x4.png"></img></td>
+                        <td id="lightgray2x4">0</td>
+                    </tr>
+                    <tr>
+                        <td>Dark Gray Duplo Brick 2x8 <span class="badge badge-secondary" id="grey2x8badge"></span></td>
+                        <td class="img"><img src="./image/Grey16.png"></img></td>
+                        <td id="grey2x8">0</td>
+                    </tr>
+                    <tr>
+                        <td>Green Duplo Brick 2x8 <span class="badge badge-secondary" id="green2x8badge"></span></td>
+                        <td class="img"><img src="./image/green2x8.png"></img></td>
+                        <td id="green2x8">0</td>
+                    </tr>
+                    <tr>
+                        <td>Medium Blue Duplo Brick 2x4 <span class="badge badge-secondary" id="mediumblue2x4badge"></span></td>
+                        <td class="img"><img src="./image/mediumblue2x4.png"></img></td>
+                        <td id="mediumblue2x4">0</td>
+                    </tr>
+                    <tr>
+                        <td>Medium Azure Plate 4x6 <span class="badge badge-secondary" id="mediumazure4x6badge"></span></td>
+                        <td class="img"><img src="./image/mediumazure4x6.png"></img></td>
+                        <td id="mediumazure4x6">0</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Total</th>
+                        <td id="total">0</td>
+                    </tr>
+                </table>
+                
+                
+            </div>
+            
+        </div>
+
+    </div>
+
+
+
+    <!-- HTML ENDS HERE -->
+
+</body>
+
+</html>
