@@ -175,7 +175,7 @@ gray_blurred = cv2.blur(gray, (3, 3))
 mask_lego = cv2.bitwise_and(gray_blurred, gray_blurred, mask=mask) 
 ```
 <br/><img src="After_masking.png" alt="Step3" width="300"/>
-The circles are then being detected using HoughCircles() (opencv, n.d.). The parameter param1, param2, minRadius and maxRadius are optimised to detect the circle using trackbar. Next, the program will check if circle is detected before moving on.
+<br/>The circles are then being detected using HoughCircles() (opencv, n.d.). The parameter param1, param2, minRadius and maxRadius are optimised to detect the circle using trackbar. Next, the program will check if circle is detected before moving on.
 
 ```
 detected_circles = cv2.HoughCircles(mask_lego,cv2.HOUGH_GRADIENT, 1, 20, param1 = 19, param2 =12, minRadius = 5, maxRadius = 10)
